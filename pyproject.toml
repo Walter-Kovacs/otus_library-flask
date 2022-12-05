@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "library-flask"
+version = "0.1.0"
+description = "library on flask"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "library_flask"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Flask = "^2.2.2"
+Flask-Migrate = "^4.0.0"
+Flask-SQLAlchemy = "^3.0.2"
+Flask-WTF = "^1.0.1"
+psycopg2-binary = "^2.9.5"
+pydantic = "^1.10.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.10.0"
+sqlalchemy-stubs = "^0.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
