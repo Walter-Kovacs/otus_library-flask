@@ -1,3 +1,5 @@
+from typing import TYPE_CHECKING
+
 from sqlalchemy import (
     Column,
     Integer,
@@ -8,6 +10,9 @@ from sqlalchemy.orm import relationship
 
 from .associations import books_authors
 from .database import db
+
+if TYPE_CHECKING:
+    from flask_sqlalchemy.query import Query
 
 
 class Author(db.Model):
@@ -20,3 +25,6 @@ class Author(db.Model):
     description = Column(Text)
 
     books = relationship("Book", secondary=books_authors, back_populates="authors")
+
+    if TYPE_CHECKING:
+        query: Query

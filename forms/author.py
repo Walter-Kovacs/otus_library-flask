@@ -14,7 +14,7 @@ class AuthorForm(FlaskForm):
         label="name",
         validators=[
             DataRequired(),
-            Length(min=1)
+            Length(min=2, max=100)
         ],
     )
     description = TextAreaField()

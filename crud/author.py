@@ -1,17 +1,18 @@
-from sqlalchemy.orm import Session
-
-from models import Author
-from schemas import Author as AuthorSchema
+from models import Author, db
 
 
 # ***************************** CREATE *****************************
-def create_author(session: Session, author_schema: AuthorSchema) -> Author:
-    author: Author = Author(**author_schema.dict())
-    session.add(author)
-    session.commit()
+def create_author(**author_params) -> Author:
+    author: Author = Author(**author_params)
+    db.session.add(author)
+    db.session.commit()
 
     return author
 
+
 # ***************************** READ *****************************
+def get_author_by_id(author_id: int) -> Author | None:
+    return Author.query.get(author_id)
+
 # ***************************** UPDATE *****************************
 # ***************************** DELETE *****************************
