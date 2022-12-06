@@ -11,7 +11,7 @@ from wtforms.validators import (
 
 class AuthorForm(FlaskForm):
     name = StringField(
-        label="name",
+        label="Author name",
         validators=[
             DataRequired(),
             Length(min=2, max=100)

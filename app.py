@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_migrate import Migrate
 from flask_wtf import CSRFProtect
 
@@ -16,6 +16,11 @@ app.config["SECRET_KEY"] = "asdf"
 CSRFProtect(app)
 db.init_app(app)
 migrate = Migrate(app, db)
+
+
+@app.get("/")
+def home():
+    return render_template("home.html")
 
 
 if __name__ == '__main__':

@@ -10,6 +10,7 @@ from flask import (
 
 from crud.author import (
     create_author,
+    get_all_authors,
     get_author_by_id,
 )
 from forms.author import AuthorForm
@@ -21,8 +22,18 @@ authors_bp = Blueprint(
 )
 
 
+END_POINT_LIST = "LIST"
 END_POINT_DETAILS = "DETAILS"
 END_POINT_ADD = "ADD"
+
+
+@authors_bp.get(
+    "",
+    endpoint=END_POINT_LIST,
+)
+def list_authors():
+    authors: list[Author] = get_all_authors()
+    return render_template("authors/list.html", authors=authors)
 
 
 @authors_bp.get(
