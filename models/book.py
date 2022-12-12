@@ -29,7 +29,7 @@ class Book(db.Model):
         server_default="0",
     )
 
-    authors = relationship("Author", secondary=books_authors, back_populates="books")
+    authors = relationship("Author", secondary=books_authors, back_populates="books", order_by="Author.name")
 
     if TYPE_CHECKING:
         query: Query

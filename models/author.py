@@ -24,7 +24,7 @@ class Author(db.Model):
     )
     description = Column(Text)
 
-    books = relationship("Book", secondary=books_authors, back_populates="authors")
+    books = relationship("Book", secondary=books_authors, back_populates="authors", order_by="Book.title")
 
     if TYPE_CHECKING:
         query: Query
