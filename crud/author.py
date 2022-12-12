@@ -12,7 +12,7 @@ def create_author(**author_params) -> Author:
 
 # ***************************** READ *****************************
 def get_all_authors() -> list[Author]:
-    return Author.query.all()
+    return Author.query.order_by(Author.name).all()
 
 
 def get_author_by_id(author_id: int) -> Author | None:

@@ -2,10 +2,11 @@ from http import HTTPStatus
 
 from flask import (
     Blueprint,
+    Response,
     redirect,
     render_template,
     request,
-    url_for, Response,
+    url_for,
 )
 
 from crud.author import (
@@ -51,7 +52,7 @@ def author_details(author_id: int):
 @authors_bp.route(
     "/add/",
     methods=["GET", "POST"],
-    endpoint=END_POINT_ADD
+    endpoint=END_POINT_ADD,
 )
 def add_author():
     form = AuthorForm()
@@ -62,7 +63,15 @@ def add_author():
     if not form.validate_on_submit():
         return render_template("authors/add.html", form=form), HTTPStatus.BAD_REQUEST
 
-    author: Author = create_author(name=form.name.data, description=form.description.data)
+    author: Author = create_author(
+        name=form.name.data,
+        description=form.description.data,
+    )
 
-    return redirect(url_for(f"{authors_bp.name}.{END_POINT_DETAILS}", author_id=author.id))
+    return redirect(
+        url_for(
+            f"{authors_bp.name}.{END_POINT_DETAILS}",
+            author_id=author.id
+        )
+    )
 
