@@ -1,8 +1,8 @@
 """authors and books
 
-Revision ID: 0af320d11c59
+Revision ID: 3d8d299f17fc
 Revises: 
-Create Date: 2022-12-06 19:15:44.558448
+Create Date: 2022-12-12 20:56:55.194281
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = "0af320d11c59"
+revision = "3d8d299f17fc"
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -40,11 +40,11 @@ def upgrade():
         sa.Column("book_id", sa.Integer(), nullable=True),
         sa.ForeignKeyConstraint(
             ["author_id"],
-            ["book.id"],
+            ["author.id"],
         ),
         sa.ForeignKeyConstraint(
             ["book_id"],
-            ["author.id"],
+            ["book.id"],
         ),
     )
     # ### end Alembic commands ###
