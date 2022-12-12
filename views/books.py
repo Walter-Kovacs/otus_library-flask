@@ -15,6 +15,7 @@ from crud.author import (
 )
 from crud.book import (
     create_book,
+    get_all_books,
     get_book_by_id,
 )
 from forms.book import BookForm
@@ -28,8 +29,18 @@ books_bp = Blueprint(
     __name__,
 )
 
+END_POINT_LIST = "LIST"
 END_POINT_DETAILS = "DETAILS"
 END_POINT_ADD = "ADD"
+
+
+@books_bp.get(
+    "/",
+    endpoint=END_POINT_LIST,
+)
+def list_books():
+    books: list[Book] = get_all_books()
+    return render_template("books/list.html", books=books)
 
 
 @books_bp.get(
